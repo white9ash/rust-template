@@ -17,6 +17,7 @@ repos:
       - id: black
   - repo: local
     hooks:
+
       - id: cargo-fmt
         name: cargo fmt
         description: Format files with rustfmt.
@@ -40,6 +41,13 @@ repos:
         files: \.rs$
         pass_filenames: false
         args: ["clippy", "--all-targets", "--all-features", "--tests", "--benches", "--", "-D", "warnings"]
+      - id: typos
+        name: cargo typos
+        description: Check for common typos in the codebase.
+        entry: typos
+        args: ["typos", "--check"]
+        files: \.rs$
+        language: rust
       - id: cargo-test
         name: cargo test
         description: unit test for the project
